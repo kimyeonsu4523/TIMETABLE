@@ -1,0 +1,458 @@
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #d9cbb8 0%, #e5d4bf 100%);
+    color: #3d3428;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #6b4423;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-family: 'Georgia', serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #6b4423;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    border-bottom: 3px solid #8b5e3c;
+    padding-bottom: 10px;
+    font-family: 'Georgia', serif;
+}
+
+/* 메인 콘텐츠 레이아웃 */
+.content {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.timetable-section {
+    flex: 2;
+    min-width: 600px;
+    background: linear-gradient(135deg, #e8d7c3 0%, #dcc9b3 100%);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 6px 15px rgba(91, 60, 40, 0.3);
+    border: 3px solid #9d6f4e;
+}
+
+.form-section {
+    flex: 1;
+    min-width: 300px;
+    background: linear-gradient(135deg, #e8d7c3 0%, #dcc9b3 100%);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 6px 15px rgba(91, 60, 40, 0.3);
+    border: 3px solid #9d6f4e;
+}
+
+/* 시간표 래퍼 (스크롤 처리) */
+.timetable-wrapper {
+    overflow-x: auto;
+    border-radius: 10px;
+}
+
+/* 시간표 스타일 */
+.timetable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f8f2ea;
+}
+
+.timetable thead {
+    background: linear-gradient(90deg, #8b5e3c 0%, #9d6f4e 100%);
+}
+
+.timetable th {
+    padding: 12px 10px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    border: 2px solid #6b4423;
+    min-width: 80px;
+    font-family: 'Georgia', serif;
+}
+
+.timetable td {
+    padding: 10px;
+    border: 1px solid #c9b39c;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.95em;
+}
+
+.timetable tbody tr {
+    background-color: #f8f2ea;
+    transition: background-color 0.3s ease;
+}
+
+.timetable tbody tr:hover {
+    background-color: #e8d7c3;
+}
+
+.timetable tbody tr:nth-child(even) {
+    background-color: #f0e6d8;
+}
+
+/* 시간 셀 스타일 */
+.time-cell {
+    background-color: #c9a882 !important;
+    font-weight: bold;
+    color: #3d3428;
+    font-size: 0.85em;
+    width: 70px;
+    min-width: 70px;
+    font-family: 'Georgia', serif;
+}
+
+/* 강의 셀 스타일 */
+.lecture-cell {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+    position: relative;
+    border: 2px solid #6b4423 !important;
+}
+
+.lecture-cell[data-lectureName] {
+    background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 강의별 색상 구분 - 해시함수로 각 강의마다 다른 색상 적용 */
+.lecture-cell[data-lectureId*="0"] {
+    background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%) !important;
+}
+
+.lecture-cell[data-lectureId*="1"] {
+    background: linear-gradient(135deg, #ADD8E6 0%, #B0E0E6 100%) !important;
+}
+
+.lecture-cell[data-lectureId*="2"] {
+    background: linear-gradient(135deg, #FFFFE0 0%, #FFFACD 100%) !important;
+}
+
+.lecture-cell[data-lectureId*="3"] {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+}
+
+.lecture-cell[data-lectureId*="4"] {
+    background: linear-gradient(135deg, #98FB98 0%, #90EE90 100%) !important;
+}
+
+.lecture-cell[data-lectureId*="5"] {
+    background: linear-gradient(135deg, #DDA0DD 0%, #EE82EE 100%) !important;
+}
+
+.lecture-cell[data-lectureId*="6"] {
+    background: linear-gradient(135deg, #F0E68C 0%, #BDB76B 100%) !important;
+}
+
+.lecture-cell[data-lectureId*="7"] {
+    background: linear-gradient(135deg, #FFA07A 0%, #FF7F50 100%) !important;
+}
+
+.lecture-cell[data-lectureId*="8"] {
+    background: linear-gradient(135deg, #87CEEB 0%, #00BFFF 100%) !important;
+}
+
+.lecture-cell[data-lectureId*="9"] {
+    background: linear-gradient(135deg, #DEB887 0%, #D2B48C 100%) !important;
+}
+
+.lecture-cell:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 강의 정보 표시 */
+.lecture-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 0.85em;
+}
+
+.lecture-info .lecture-name {
+    color: #2d1b0f;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.lecture-info .classroom {
+    color: #3d2817;
+    font-size: 0.8em;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.lecture-info .credit {
+    color: #2d1b0f;
+    font-size: 0.75em;
+    margin-top: 2px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* 다중 시간 강의 (여러 행 차지) */
+.lecture-cell[data-rowspan="2"] {
+    /* 색상은 data-lectureId로 적용 */
+}
+
+.lecture-cell[data-rowspan="3"] {
+    /* 색상은 data-lectureId로 적용 */
+}
+
+.lecture-cell.merged {
+    border-right: 3px solid #6b4423 !important;
+    border-left: 3px solid #6b4423 !important;
+}
+
+.lecture-cell.merged:first-of-type {
+    border-top: 3px solid #6b4423 !important;
+    border-radius: 10px 10px 0 0;
+}
+
+.lecture-cell.merged:last-of-type {
+    border-bottom: 3px solid #6b4423 !important;
+    border-radius: 0 0 10px 10px;
+}
+
+/* 폼 스타일 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #3d3428;
+    font-weight: bold;
+    font-size: 0.95em;
+    font-family: 'Georgia', serif;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #9d6f4e;
+    border-radius: 4px;
+    font-size: 0.95em;
+    background-color: #f8f2ea;
+    color: #3d3428;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Georgia', serif;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #6b4423;
+    box-shadow: 0 0 10px rgba(107, 68, 35, 0.3);
+}
+
+/* 버튼 스타일 */
+.btn-submit,
+.btn-clear {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.05em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.btn-submit {
+    background: linear-gradient(90deg, #8b5e3c 0%, #6b4423 100%);
+    color: white;
+    font-family: 'Georgia', serif;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 68, 35, 0.5);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+.btn-clear {
+    background: linear-gradient(90deg, #9d6f4e 0%, #7d5635 100%);
+    color: white;
+    font-family: 'Georgia', serif;
+}
+
+.btn-clear:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 68, 35, 0.5);
+}
+
+/* 학점 계산 표시 */
+.total-credits {
+    margin-top: 20px;
+    padding: 15px;
+    background: linear-gradient(90deg, #dcc9b3 0%, #e8d7c3 100%);
+    border-left: 5px solid #8b5e3c;
+    border-radius: 4px;
+    text-align: center;
+    color: #3d3428;
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+}
+
+.action-buttons {
+    margin-top: 15px;
+}
+
+/* 일정 입력 스타일 */
+.schedule-entry {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.schedule-entry select,
+.schedule-entry input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #9d6f4e;
+    border-radius: 4px;
+    font-family: 'Georgia', serif;
+    background-color: #fff;
+    color: #3d3428;
+}
+
+.schedule-entry input {
+    max-width: 60px;
+}
+
+.btn-remove-schedule {
+    padding: 6px 10px;
+    background-color: #d4a574;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-remove-schedule:hover {
+    background-color: #b8805a;
+}
+
+.btn-add-schedule {
+    width: 100%;
+    padding: 8px;
+    background-color: #9d6f4e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    margin-top: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-schedule:hover {
+    background-color: #8b5e3c;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .timetable-section,
+    .form-section {
+        min-width: 100%;
+    }
+
+    .timetable th,
+    .timetable td {
+        padding: 8px 5px;
+        font-size: 0.9em;
+    }
+
+    .form-group {
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px 10px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    .timetable-section,
+    .form-section {
+        padding: 15px;
+    }
+
+    .timetable th,
+    .timetable td {
+        padding: 6px 3px;
+        font-size: 0.8em;
+    }
+
+    .time-cell {
+        font-size: 0.7em;
+        width: 55px;
+        min-width: 55px;
+    }
+
+    .lecture-cell {
+        min-width: 60px;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 0.9em;
+        padding: 8px 10px;
+    }
+
+    .btn-submit,
+    .btn-clear {
+        padding: 10px;
+        font-size: 0.95em;
+    }
+
+    .total-credits {
+        font-size: 0.95em;
+        padding: 12px;
+    }
+}
